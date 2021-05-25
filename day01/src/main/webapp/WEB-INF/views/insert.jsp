@@ -8,7 +8,6 @@
 	<p><input type="text" name="publisher" placeholder="출판사"></p>
 	<p><input type="text" name="pbday" placeholder="출간일 oooo-oo-oo"></p>
 	<p><input type="number" name="count" placeholder="수량"></p>
-	<p><input type="number" name="num" placeholder="번호"></p>
 	<p><input type="submit" value="등록"></p>
 </form>
 

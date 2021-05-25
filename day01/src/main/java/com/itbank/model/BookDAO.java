@@ -29,16 +29,16 @@ public class BookDAO {
 	}
 	
 	public List<BookDTO> selectList() {
-		String sql = "select * from book order by num";
+		String sql = "select * from book order by idx";
 		
 		RowMapper<BookDTO> rowMapper = (ResultSet rs, int row) -> {
 			BookDTO dto = new BookDTO();
 			dto.setAuthor(rs.getString("author"));
 			dto.setCount(rs.getInt("count"));
-			dto.setNum(rs.getInt("num"));
 			dto.setPbday(rs.getString("pbday"));
 			dto.setPublisher(rs.getString("publisher"));
 			dto.setTitle(rs.getString("title"));
+			dto.setIdx(rs.getInt("idx"));
 			return dto;
 		};
 		return jt.query(sql, rowMapper);
@@ -46,8 +46,43 @@ public class BookDAO {
 	
 	public int insertBook(BookDTO dto) {
 		int row = 0;
-		String sql = "insert into book values(?, ?, ?, ?, ?, ?)";
-		row = jt.update(sql, dto.getTitle(), dto.getAuthor(), dto.getPublisher(), dto.getPbday(), dto.getCount(), dto.getNum());
+		String sql = "insert into book values(board_seq.nextval, ?, ?, ?, ?, ?)";
+		row = jt.update(sql, dto.getTitle(), dto.getAuthor(), dto.getPublisher(), dto.getPbday(), dto.getCount());
 		return row;
+	}
+	
+	public int deleteBook(int idx) {
+		String sql = "delete from book where idx=?";
+		int row = jt.update(sql, idx);
+		return row;
+	}
+	// PreparedStatement pstmt
+	// ResultSet rs = pstmt.excuteQuery();
+	// int row = pstmt.executeUpdate();
+	
+	public int updateBook(BookDTO dto) {
+		String sql = "update book set "
+				+ "title=?, author=?, publisher=?, pbday=?, count=? "
+				+ "where idx=?";
+		int row = jt.update(sql, dto.getTitle(), dto.getAuthor(), dto.getPublisher(), dto.getPbday(), dto.getCount(), dto.getIdx());
+		return row;
+	}
+
+	public BookDTO selectOne(int idx) {
+		String sql = "select * from book where idx=?";
+		
+		// RowMapper 객체는 select 결과에서 한 줄을 어떻게 객체 형태로 맵핑할지 담고 있는 객체
+		RowMapper<BookDTO> rowMapper = (ResultSet rs, int row) -> {
+			BookDTO dto = new BookDTO();
+			dto.setAuthor(rs.getString("author"));
+			dto.setCount(rs.getInt("count"));
+			dto.setPbday(rs.getString("pbday"));
+			dto.setPublisher(rs.getString("publisher"));
+			dto.setTitle(rs.getString("title"));
+			dto.setIdx(rs.getInt("idx"));
+			return dto;
+		};
+		
+		return jt.queryForObject(sql, rowMapper, idx);
 	}
 }

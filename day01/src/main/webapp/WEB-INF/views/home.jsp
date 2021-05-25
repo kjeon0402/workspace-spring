@@ -15,8 +15,6 @@
 	<br>
 	<li><a href="${cpath }/book/insert">insert</a></li>
 	<li><a href="${cpath }/book/select">select</a></li>
-	<li><a href="${cpath }/book/update">update</a></li>
-	<li><a href="${cpath }/book/delete">delete</a></li>
 </ul>
 
 </body>

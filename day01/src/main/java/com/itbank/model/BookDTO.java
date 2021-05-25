@@ -5,13 +5,12 @@ package com.itbank.model;
 //	PUBLISHER NOT NULL VARCHAR2(200) 
 //	PBDAY              VARCHAR2(200) 
 //	COUNT              NUMBER        
-//	NUM       NOT NULL NUMBER
 
 public class BookDTO {
 	
 	private String title, author, publisher;
 	private String pbday;
-	private int count, num;
+	private int count, idx;
 	
 	public String getTitle() {
 		return title;
@@ -43,10 +42,10 @@ public class BookDTO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public int getNum() {
-		return num;
+	public int getIdx() {
+		return idx;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setIdx(int idx) {
+		this.idx = idx;
 	}
 }
