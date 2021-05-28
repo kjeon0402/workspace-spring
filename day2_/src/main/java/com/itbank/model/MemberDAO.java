@@ -1,6 +1,7 @@
 package com.itbank.model;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,20 +13,27 @@ public class MemberDAO {
 
 	@Autowired private JdbcTemplate jt;
 	
+	// 대부분의 select 쿼리가 이 rowMapper를 참조할거니까, 멤버필드로 선언해둘 수 있다
+	private RowMapper<MemberDTO> rowMapper = (ResultSet rs, int row) -> {
+		MemberDTO dto = new MemberDTO();
+		dto.setIdx(rs.getInt("idx"));
+		dto.setUserid(rs.getString("userid"));
+		dto.setUserpw(rs.getString("userpw"));
+		dto.setUsername(rs.getString("username"));
+		dto.setPhone(rs.getString("phone"));
+		dto.setBirth(rs.getString("birth"));
+		return dto;
+	};
+	
+	// 회원 전체 목록
+	public List<MemberDTO> selectList() {		
+		String sql = "select * from member2 order by idx";
+		return jt.query(sql, rowMapper);
+	}
+	
 	// 로그인
 	public MemberDTO login(MemberDTO memberDTO) {
 		String sql = "select * from member2 where userid=? and userpw=?";
-		
-		RowMapper<MemberDTO> rowMapper = (ResultSet rs, int row) -> {
-			MemberDTO dto = new MemberDTO();
-			dto.setBirth(rs.getString("birth"));
-			dto.setIdx(rs.getInt("idx"));
-			dto.setPhone(rs.getString("phone"));
-			dto.setUserid(rs.getString("userid"));
-			dto.setUserpw(rs.getString("userpw"));
-			dto.setUsername(rs.getString("username"));
-			return dto;
-		};
 		return jt.queryForObject(sql, rowMapper, memberDTO.getUserid(), memberDTO.getUserpw());
 	}
 	

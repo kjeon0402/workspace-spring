@@ -9,26 +9,33 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itbank.model.MemberDAO;
 import com.itbank.model.MemberDTO;
+import com.itbank.service.MemberService;
 
 @Controller
+@RequestMapping("/member")
 public class MemberController {
 	
-	@Autowired private MemberDAO dao;
+//	@Autowired private MemberDAO dao;
+	@Autowired private MemberService ms;
 	
-	@GetMapping("/login")
+	@GetMapping("/login")			// 요청에 담긴 주소, request.getRequestURI()
 	public String login() {
-		return "member/login";
+		return "/member/login";		// 포워드 대상이 되는 jsp의 이름, viewName
 	}
 	
 	@PostMapping("/login")
 	public String login(MemberDTO dto, HttpSession session) {
-		MemberDTO login = dao.login(dto);
+		MemberDTO login = ms.login(dto);	// dto에는 userid와 userpw만 있다
+											// login에는 DB에서 부럴온 모든 값이 들어 있다
 		session.setAttribute("login", login);
-		return "redirect:/";
+		session.setMaxInactiveInterval(600);
+		return "redirect:/";	// forward는 jsp의 이름을 가리켜야 하고
+								// redirect는 요청 주소를 가리켜야 한다
 	}
 	
 	// 컨트롤러에서 지정한 클래스 형식의 예외가 발생하면 호출되는 메서드
@@ -41,26 +48,20 @@ public class MemberController {
 		return mav;
 	}
 	
-	@GetMapping("/join")
-	public String join() {
-		return "member/join";
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
+	
+	@GetMapping("/join")
+	public void join() {}
+	// 반환형이 void인 메서드는 요청 주소의 이름을 viewName으로 처리한다
 	
 	@PostMapping("/join")
-	public String join(MemberDTO dto, Model model) {
-		int row = dao.join(dto);
-		if(row == 1) {
-			model.addAttribute("msg", "회원가입을 환영합니다.");
-			model.addAttribute("url", "/");
-		} else {
-			model.addAttribute("msg", "회원가입에 실패했습니다.");
-		}
-		return "msg";
-	}
-	
-	@GetMapping("/logout")
-	public String logout() {
-		return "member/logout";
+	public String join(MemberDTO dto) {
+		int row = ms.join(dto);
+		return "redirect:/";
 	}
 	
 	@GetMapping("/drop")
@@ -70,7 +71,7 @@ public class MemberController {
 	
 	@PostMapping("/drop")
 	public String drop(int idx, String userpw, Model model, HttpSession session) {
-		int row = dao.drop(idx, userpw);
+		int row = ms.drop(idx, userpw);
 		
 		if(row == 1) {
 			model.addAttribute("msg", "탈퇴를 성공했습니다.");
@@ -89,7 +90,8 @@ public class MemberController {
 	
 	@PostMapping("/modify")
 	public String modify(MemberDTO dto, Model model, HttpSession session) {
-		int row = dao.modify(dto);
+		// 정보가 수정되면, DB에 있는 정보도 수정해야 하고, 세션에 들어 있는 정보도 갱신
+		int row = ms.modify(dto);
 		
 		if(row == 1) {
 			model.addAttribute("msg", "정보 수정을 성공했습니다. 다시 로그인하세요.");
@@ -108,7 +110,7 @@ public class MemberController {
 	
 	@PostMapping("/changepw")
 	public String changepw(String userpw, int idx, Model model, HttpSession session) {
-		int row = dao.changepw(userpw, idx);
+		int row = ms.changepw(userpw, idx);
 		
 		if(row == 1) {
 			model.addAttribute("msg", "비밀번호를 변경했습니다. 다시 로그인하세요.");
