@@ -6,18 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>day08</title>
 </head>
 <body>
 
-<h1>form</h1>
+<header>
+<h1><a href="${cpath }">LOGO</a></h1>
 
 <ul>
-	<li><a href="${cpath }/form/ex01">form/ex01</a></li>
-	<li><a href="${cpath }/form/ex02">form/ex02</a></li>
-	<li><a href="${cpath }/form/ex03">form/ex03</a></li>
-	<li><a href="${cpath }/form/ex04">form/ex04</a></li>
+	<li><a href="${cpath }/product/order">주문하기</a></li>
+	<li><a href="${cpath }/product/update">수량변경</a></li>
+	<li><a href="${cpath }/product/revenue">주문확인</a></li>
 </ul>
-
+</header>
 </body>
 </html>

@@ -16,6 +16,7 @@
 <a href="test/img1">test/img1</a>
 <a href="test/member">test/member</a>
 <a href="form">form</a>
+<a href="forEach">forEach</a>
 
 </body>
 </html>

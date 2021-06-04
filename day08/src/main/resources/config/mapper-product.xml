@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.itbank.model.ProductDAO">
+
+	<select id="orderList" resultType="product">
+		select * from product order by name
+	</select>
+	
+	<insert id="insertRevenue" parameterType="product">
+		insert into revenue(pname, count, cost) values(#{name}, #{count}, #{price})
+	</insert>
+	
+	<update id="updateCountMinus" parameterType="product">
+		update product set count = count - #{count} where idx = #{idx}
+	</update>
+
+	<update id="updateProduct" parameterType="product">
+		update product set count = #{count} where idx = #{idx}
+	</update>
+	
+	<select id="selectRevenueList" resultType="com.itbank.model.RevenueDTO">
+		select * from revenue order by idx desc
+	</select>
+</mapper>
