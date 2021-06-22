@@ -3,6 +3,8 @@ package com.itbank.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,6 +18,13 @@ public class AjaxController {
 	@Autowired private MemberService ms;
 	private ObjectMapper mapper = new ObjectMapper();
 	
+	@PostMapping("/join")
+	public int join(@RequestBody Member2DTO dto) {
+		System.out.println(dto.getUserid());
+		System.out.println(dto.getUsername());
+		return ms.join(dto);
+	}
+	
 	@GetMapping("/checkId/{userid}")
 	public int checkId(@PathVariable String userid) {
 		return ms.checkId(userid);
@@ -28,6 +37,18 @@ public class AjaxController {
 		
 		String data = mapper.writeValueAsString(dto);
 		System.out.println(data);	// 자바스크립트에게 객체 정보를 전달하기 위한 문자열
+		return data;
+	}
+	
+	@GetMapping("/ajax/{num}/")
+	public String ajax(@PathVariable int num) {
+		String data = null;
+		switch(num) {
+			case 1: data = "one";	break;
+			case 2: data = "two";	break;
+			case 3: data = "three";	break;
+			default: data = "zero";
+		}
 		return data;
 	}
 }

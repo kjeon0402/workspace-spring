@@ -18,6 +18,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@GetMapping("/ajax")
+	public void ajax() {}
+	
 	@GetMapping("/member/join")
 	public void join() {}
 	

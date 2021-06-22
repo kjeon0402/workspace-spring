@@ -15,12 +15,24 @@
 
 <form method="POST">
 	<p>
-		<input type="text" name="userid" placeholder="ID">
+		<input type="text" name="userid" placeholder="ID" required autofocus>
 		<input type="button" name="checkId" value="ID 중복 확인">
+		<span id="checkIdMsg"></span>
 	</p>
-	<div id="checkIdMsg"></div>
 	<p>
-		<input type="password" name="userpw" placeholder="PASSWORD">
+		<input type="password" name="userpw" placeholder="PASSWORD" required>
+	</p>
+	<p>
+		<input type="text" name="username" placeholder="NAME" required>
+	</p>
+	<p>
+		<input type="text" name="phone" placeholder="PHONE" required>
+	</p>
+	<p>
+		<input type="text" name="birth" placeholder="BIRTH 000000" required>
+	</p>
+	<p>
+		<input type="submit" value="가입">
 	</p>
 </form>
 <%-- 
@@ -35,6 +47,48 @@
  --%>
  
 <script>
+	// 회원 가입을 ajax로 처리하는 코드
+	const joinForm = document.forms[0];
+	joinForm.onsubmit = function(event) {
+		event.preventDefault()
+		console.log('서브밋 이벤트 발생')
+		
+		// formData를 불러와서 자바스크립트 객체로 변환하고, 자바스크립트 객체를 JSON으로 변환한 후에 서버에 전송한다
+		const ob = {}
+		const formData = new FormData(event.target)	// 사용자 입력값을 가지고 있는 formData를 불러와서
+		
+		for(key of formData.keys()) {						// key값에 따라서
+			console.log(key + " : " + formData.get(key))	// value를 확인하고
+			ob[key] = formData.get(key)						// ob객체에 key와 value를 추가한다
+		}
+		console.log(ob)		// 자바스크립트 객체
+		
+		const url = '${cpath}/join'
+		const opt = {
+			method: 'POST',
+			body: JSON.stringify(ob),	// 자바스크립트 객체를 JSON형식의 문자열로 변경해서 서버에게 보낸다
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8',
+			}
+		}
+		fetch(url, opt)
+		.then(function(resp) {
+			return resp.text()
+		})
+		.then(function(text) {
+			if(text == 1) {
+				alert('가입 성공')
+				event.target.reset()
+				// <input type="reset" value="초기화">
+			} else {
+				alert('가입 실패')
+			}
+		})
+	}
+</script>
+ 
+<script>
+	// ID 중복 체크
 	const userid = document.querySelector('input[name="userid"]')
 	const checkIdBtn = document.querySelector('input[name="checkId"]')
 	const checkIdMsg = document.getElementById('checkIdMsg')

@@ -22,4 +22,8 @@ public class MemberService {
 		}
 		return dto;
 	}
+
+	public int join(Member2DTO dto) {
+		return dao.join(dto); 
+	}
 }

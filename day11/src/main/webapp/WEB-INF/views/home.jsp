@@ -22,6 +22,7 @@
 <ul>
 	<li><a href="${cpath }/member/join">회원 가입 예제(아이디 중복 확인)</a></li>
 	<li><a href="${cpath }/member/search">회원 검색 예제</a></li>
+	<li><a href="${cpath }/ajax">간단 ajax 형식별 예제</a></li>
 </ul>
 
 <fieldset>
