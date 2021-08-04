@@ -1,0 +1,202 @@
+@charset "UTF-8";
+	body {
+		padding: 0;
+		margin: 0;
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+	li {
+		list-style: none; 
+	}
+	.hidden {
+		display: none;
+	}
+/* 	헤더 스타일 */
+body {
+	padding: 0;
+	margin: 0;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+li {
+	list-style: none;
+}
+.hidden {
+	display: none;
+}
+/* 	헤더 스타일 */
+header {
+	width: 100%;
+	position: fixed;
+	background-color: white;
+	top: 0;
+}
+.header_wrap {
+	display: flex;
+	width: 1400px;
+	margin: 0 auto;
+}
+/* 	헤더 좌측 */
+.header_left {
+	padding: 15px;
+	padding-top: 22px;
+	font-size: 20pt;
+	margin-top: 20px;
+	font-weight: bold;
+}
+/* 	헤더 가운데 */
+.header_center {
+	margin-top: 20px;
+	position: relative;
+}
+.header_ul {
+	display: flex;
+	padding: 0;
+}
+.header_ul > li {
+	margin: 10px;
+}
+.a {
+	font-size: 18pt;
+	color: red;
+	font-weight: bold;
+}
+.b {
+	font-size: 13pt;
+	font-weight: bold;
+	padding-top: 7px;
+}
+.c {
+	font-size: 13pt;
+	padding-top: 7px;
+}
+/* 	헤더 우측 */
+.header_right {
+	margin-top: 20px;
+	margin-left: 15px;
+	font-size: 10pt;
+}
+.header_right > ul {
+	padding-top: 13px;
+}
+/* 	카테고리 오버레이 (소분류 카테고리에서 마우스 벗어나면 소분류 숨기려고 만듬)*/
+.upperOverlay {
+	position: absolute;
+	top: -7px;
+	left: 0;
+	width: 1300px;
+	height: 30px;
+	border: 1px solid black;	/* 테두리 지워야함! */
+}
+.downOverlay {
+	position: absolute;
+	top: 80px;
+	left: 0;
+	width: 1300px;
+	height: 1000px;
+	border: 1px solid black;	/* 테두리 지워야함! */
+}
+/* 	소분류 */
+.innercategory {
+	position: absolute;
+	width: 100px;
+	font-size: 10pt;
+	border: 1px solid black; /* 테두리 지워야함! */
+}
+.innercategory > ul {
+	padding-left: 10px;
+}
+.innerBasict {
+	left: 200px;
+	top: 65px;
+	z-index: 5;
+}
+.innerOuter {
+	left: 275px;
+	top: 65px;
+	z-index: 5;
+}
+.innerTop {
+	left: 335px;
+	top: 65px;
+	z-index: 5;
+}
+.innerBottom {
+	left: 380px;
+	top: 65px;
+	z-index: 5;
+}
+.innerShoes {
+	left: 560px;
+	top: 65px;
+	z-index: 5;
+}
+.innerAcc {
+	left: 675px;
+	top: 65px;
+	z-index: 5;
+}
+.innerBoard {
+	left: 820px;
+	top: 65px;
+	z-index: 5;
+}
+/* 	검색 오버레이 */
+.search_overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+.search_modal {
+	position: fixed;
+	left: 25%;
+	top: 10%;
+	width: 50%;
+	height: 800px;
+	background-color: inherit;
+	z-index: 5;
+}
+.close_modal {
+	float: right;
+	font-size: 20pt;
+	font-weight: bold;
+	color: white;
+}
+.search_div {
+	margin-top: 200px;
+	text-align: center;
+	font-size: 30pt;
+	font-weight: bold;
+	color: white;
+}
+.search_div > form > input {
+	border: 2px solid white;
+	width: 550px;
+	height: 50px;
+	background-color: inherit;
+	color: white;
+	font-size: 20pt;
+}
+.small_font {
+	font-size: 10pt;
+}
+	/* 리모컨 */
+.remote_controller {
+	position: fixed;
+	width: 50px;
+	right: 20px;
+	bottom: 20px;
+	font-size: 20pt;
+	font-weight: bold;
+	text-align: center;
+}
+.remote_controller:hover {
+	cursor: pointer;
+}

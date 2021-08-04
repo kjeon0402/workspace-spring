@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.itbank.verlin.model.ReviewDAO">
+	<select id="reviewList" resultType="com.itbank.verlin.model.ReviewDTO" parameterType="com.itbank.verlin.model.Paging">
+		select
+		board_review.*, member.member_name, product.product_name, product.product_price, product_photo.photo_path, product_photo.category
+		from board_review
+		join member on member.member_uid = board_review.member_uid
+		join product on product.product_id = board_review.product_id
+		join product_photo on product.product_id = product_photo.product_id
+		where deleted = 'n' and category = 'THUMBNAIL'
+		<if test="search_keyword != null">
+			and content like '%%${search_keyword}%%' 
+		</if>
+		order by rdate desc
+		offset ${offset} rows fetch first ${perPage} rows only
+	</select>
+	
+	<select id="boardCount" resultType="int" parameterType="hashmap">
+		select count(*) from board_review
+		<if test="search_keyword != null">
+			where content like '%%${search_keyword}%%'
+		</if>
+	</select>
+
+</mapper>

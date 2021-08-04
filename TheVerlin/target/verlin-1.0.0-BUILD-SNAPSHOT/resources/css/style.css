@@ -1,0 +1,213 @@
+/*
+ * Common
+ */
+.h-40{
+    height: 40px;
+}
+.h-70{
+    height: 70px;
+}
+.h-90{
+    height: 90px;
+}
+.h-110{
+    height: 110px;
+}
+.input-width-s{
+    width: 60px;
+}
+.input-width-m{
+    width: 180px;
+}
+.input-width-l{
+    width: 450px;
+}
+.color-red{
+    color: red;
+}
+.font-size-l{
+    font-size: 14px;
+}
+.font-size-m{
+    font-size: 12px;
+}
+.font-size-s{
+    font-size: 11px;
+}
+.c636363{
+    color: #636363
+}
+.c0f6674{
+    color: #0f6674;
+}
+.c8f8f8f{
+    color: #8f8f8f;
+}
+/*
+ * join
+ */
+.join-btn-cancel{
+    padding: 7px 30px;
+    font-size: 12px;
+    background-color: white;
+}
+.join-btn-join{
+    padding: 7px 70px;
+    font-size: 12px;
+    background-color: black;
+    color: white;
+}
+.join-textarea-agree{
+    resize: none;
+    width: 100%;
+    height: 110px;
+    font-size: 12px;
+    color: gray;
+}
+.join-textarea-agree:focus{
+    outline: none;
+}
+.join-p-title{
+    margin-bottom: 0;
+    font-size: 14px;
+}
+.join-table{
+    background-color: #FBFAFA;
+}
+.join-table-check{
+    vertical-align: middle;
+}
+.address-table{
+    font-size: 11px;
+    width: 1000px;
+}
+.address-table-th-1{
+    width: 5%;
+}
+.address-table-th-2{
+    width: 10%;
+}
+.address-table-th-3{
+    width: 10%;
+}
+.address-table-th-4{
+    width: 10%;
+}
+.address-table-th-5{
+    width: 15%;
+}
+.address-table-th-6{
+    width: 15%;
+}
+.address-table-th-8{
+    width: 5%;
+}
+
+
+.address-table td:first-child{
+    background-color: #FBFAFA;
+    width: 130px;
+}
+.addressModify-td-width,
+.addressRegister-td-width
+.modify-mPhone-td-width
+.join-mPhone-td-width{
+    width: 10%;
+}
+/*
+    address_register.jsp
+*/
+.header-empty-space{
+    width: 100%;
+    height: 100px;
+}
+.address-table th{
+    color: #888;
+}
+.default-wrap-size{
+    width: 1200px;
+}
+.tip-text-title,
+.tip-text-content{
+    font-size: 11px;
+}
+.tip-text-title{
+    color: #777
+}
+.tip-text-content{
+    color: #757575
+}
+
+.address-register-button-reg,
+.address-button-reg-address{
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+    color: white;
+    background-color: #485163;
+}
+.address-register-button-candle,
+.address-button-del-address{
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+    background-color: white;
+}
+.address-modify-button{
+    background-color: white;
+    border: 1px solid #BBBBBB;
+    width: 56px;
+    height: 24px;
+}
+.address-button-fix-off{
+    background-color: #8C8C8C;
+    color: white;
+    width: 41px;
+    height: 24px;
+}
+.address-button-fix-on{
+    background-color: white;
+    width: 41px;
+    height: 24px;
+}
+
+/*
+*   modify.jsp
+*/
+.modify-tip{
+    font-size: 10px;
+    color: red;
+}
+.modal-body input,
+.modal-body select{
+    width: 180px;
+}
+.modal-table tr{
+    height: 20px;
+}
+.modal-body p{
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-left: 3px;
+}
+.modal-body-height{
+    height: 100px;
+}
+
+/*
+ * Mypage.jsp
+ */
+.order-status p{
+    margin-bottom: 0;
+    font-size: 11px;
+    width: 100px;
+}
+.order-status-point p{
+    font-size: 11px;
+    width: 180px;
+}
+.mypage-menu p{
+    font-size: 11px;
+    margin-bottom: 0;
+    color: #333333;
+}
